@@ -248,6 +248,18 @@ body {
     font-size: 85%;
 }
 
+#io .btngroup {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+#io .btngroup input[type=button] {
+    width: 100%;
+    white-space: normal;
+}
+
 #textarea {
     width: 650px;
     height: 200px;

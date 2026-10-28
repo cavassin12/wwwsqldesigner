@@ -178,28 +178,26 @@
                     <td style="width: 60%">
                         <fieldset>
                             <legend id="client"></legend>
-                            <div id="singlerow">
+                            <div class="btngroup">
                                 <input type="button" id="clientsave" />
                                 <input type="button" id="clientload" />
+                                <input type="button" id="clientdownloadxml" />
+                                <input type="button" id="clientdownloadtxt" />
+                                <input type="button" id="clientloadfromfile" />
                             </div>
-                            <div id="singlerow">
-                                <input type="button" id="clientdownloadxml"   />
-                                <input type="button" id="clientdownloadtxt"   />
-                                <input type="button" id="clientloadfromfile"  />
-                            </div>
-                            <div id="singlerow">
+                            <div class="btngroup">
                                 <input type="button" id="clientlocalsave" />
                                 <input type="button" id="clientlocalload" />
                                 <input type="button" id="clientlocallist" />
                             </div>
-                            <div id="singlerow">
-                                <input type="button" id="dropboxsave" /><!-- may get hidden by dropBoxInit() -->
-                                <input type="button" id="dropboxload" /><!-- may get hidden by dropBoxInit() -->
-                                <input type="button" id="dropboxlist" /><!-- may get hidden by dropBoxInit() -->
+                            <div class="btngroup" id="dropboxgroup"><!-- may get hidden by dropBoxInit() -->
+                                <input type="button" id="dropboxsave" />
+                                <input type="button" id="dropboxload" />
+                                <input type="button" id="dropboxlist" />
                             </div>
-                            <div id="singlerow">
-                              <input type="button" id="clientcopy" />
-                              <input type="button" id ="clientpaste" />
+                            <div class="btngroup">
+                                <input type="button" id="clientcopy" />
+                                <input type="button" id="clientpaste" />
                             </div>
                             <hr />
                             <input type="button" id="clientsql" />
@@ -213,11 +211,13 @@
                                 <option></option>
                             </select>
                             <hr />
-                            <input type="button" id="serversave" />
-                            <input type="button" id="quicksave" />
-                            <input type="button" id="serverload" />
-                            <input type="button" id="serverlist" />
-                            <input type="button" id="serverimport" />
+                            <div class="btngroup">
+                                <input type="button" id="serversave" />
+                                <input type="button" id="quicksave" />
+                                <input type="button" id="serverload" />
+                                <input type="button" id="serverlist" />
+                                <input type="button" id="serverimport" />
+                            </div>
                         </fieldset>
                     </td>
                 </tr>

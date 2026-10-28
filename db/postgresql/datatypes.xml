@@ -1,43 +1,74 @@
 <?xml version="1.0"?>
 <datatypes db="postgresql">
 	<group label="Numeric" color="rgb(238,238,170)">
-		<type label="Integer" length="0" sql="INTEGER" re="INT" quote="" />
-		<type label="Small Integer" length="0" sql="SMALLINT" quote="" />
-		<type label="Big Integer" length="0" sql="BIGINT" quote="" />
-		<type label="Decimal" length="1" sql="DECIMAL" re="numeric" quote="" />
-		<type label="Serial" length="0" sql="SERIAL" re="SERIAL4" fk="Integer" quote="" />
-		<type label="Big Serial" length="0" sql="BIGSERIAL" re="SERIAL8" fk="Big Integer" quote="" />
-		<type label="Real" length="0" sql="BIGINT" quote="" />
-		<type label="Single precision" length="0" sql="FLOAT" quote="" />
-		<type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote="" />
+		<type label="Integer" length="0" sql="INTEGER" re="^(INT|INT4|INTEGER)$" quote="" />
+		<type label="Small Integer" length="0" sql="SMALLINT" re="^(INT2|SMALLINT)$" quote="" />
+		<type label="Big Integer" length="0" sql="BIGINT" re="^(INT8|BIGINT)$" quote="" />
+		<type label="Numeric" length="1" sql="NUMERIC" re="^(NUMERIC|DECIMAL|DEC)$" quote="" note="NUMERIC(precision, scale), e.g. 10,2" />
+		<type label="Real" length="0" sql="REAL" re="^(REAL|FLOAT4)$" quote="" />
+		<type label="Double precision" length="0" sql="DOUBLE PRECISION" re="^(DOUBLE PRECISION|FLOAT8|FLOAT)$" quote="" />
+		<type label="Money" length="0" sql="MONEY" quote="" />
+		<type label="Small Serial" length="0" sql="SMALLSERIAL" re="^(SMALLSERIAL|SERIAL2)$" fk="Small Integer" quote="" />
+		<type label="Serial" length="0" sql="SERIAL" re="^(SERIAL|SERIAL4)$" fk="Integer" quote="" />
+		<type label="Big Serial" length="0" sql="BIGSERIAL" re="^(BIGSERIAL|SERIAL8)$" fk="Big Integer" quote="" />
 	</group>
 
 	<group label="Character" color="rgb(255,200,200)">
-		<type label="Char" length="1" sql="CHAR" quote="'"/>
-		<type label="Varchar" length="1" sql="VARCHAR" re="CHARACTER VARYING" quote="'"/>
-		<type label="Text" length="0" sql="TEXT" quote="'"/>
-		<type label="Binary" length="1" sql="BYTEA" quote="'"/>
-		<type label="Boolean" length="0" sql="BOOLEAN" quote="'"/>
+		<type label="Char" length="1" sql="CHAR" re="^(CHAR|CHARACTER|BPCHAR)$" quote="'" />
+		<type label="Varchar" length="1" sql="VARCHAR" re="^(VARCHAR|CHARACTER VARYING)$" quote="'" />
+		<type label="Text" length="0" sql="TEXT" quote="'" />
+	</group>
+
+	<group label="Binary &amp; Boolean" color="rgb(255,225,175)">
+		<type label="Bytea" length="0" sql="BYTEA" quote="'" />
+		<type label="Boolean" length="0" sql="BOOLEAN" re="^(BOOLEAN|BOOL)$" quote="" />
 	</group>
 
 	<group label="Date &amp; Time" color="rgb(200,255,200)">
 		<type label="Date" length="0" sql="DATE" quote="'" />
-		<type label="Time" length="1" sql="TIME" quote="'" />
-		<type label="Time w/ TZ" length="0" sql="TIME WITH TIME ZONE" quote="'" />
+		<type label="Time" length="1" sql="TIME" re="^(TIME|TIME WITHOUT TIME ZONE)$" quote="'" />
+		<type label="Time w/ TZ" length="0" sql="TIME WITH TIME ZONE" re="^(TIMETZ|TIME WITH TIME ZONE)$" quote="'" />
+		<type label="Timestamp" length="1" sql="TIMESTAMP" re="^(TIMESTAMP|TIMESTAMP WITHOUT TIME ZONE)$" quote="'" />
+		<type label="Timestamp w/ TZ" length="0" sql="TIMESTAMP WITH TIME ZONE" re="^(TIMESTAMPTZ|TIMESTAMP WITH TIME ZONE)$" quote="'" />
 		<type label="Interval" length="1" sql="INTERVAL" quote="'" />
-		<type label="Timestamp" length="1" sql="TIMESTAMP" quote="'" />
-		<type label="Timestamp w/ TZ" length="0" sql="TIMESTAMP WITH TIME ZONE" quote="'" />
-		<type label="Timestamp wo/ TZ" length="0" sql="TIMESTAMP WITHOUT TIME ZONE" quote="'" />
+	</group>
+
+	<group label="Range" color="rgb(215,235,190)">
+		<type label="Int4 Range" length="0" sql="INT4RANGE" quote="'" />
+		<type label="Int8 Range" length="0" sql="INT8RANGE" quote="'" />
+		<type label="Numeric Range" length="0" sql="NUMRANGE" quote="'" />
+		<type label="Date Range" length="0" sql="DATERANGE" quote="'" />
+		<type label="Timestamp Range" length="0" sql="TSRANGE" quote="'" />
+		<type label="Timestamp w/ TZ Range" length="0" sql="TSTZRANGE" quote="'" />
+	</group>
+
+	<group label="Network" color="rgb(200,225,255)">
+		<type label="Inet Host Addr" length="0" sql="INET" quote="'" />
+		<type label="Inet CIDR Addr" length="0" sql="CIDR" quote="'" />
+		<type label="MAC Addr" length="0" sql="MACADDR" quote="'" />
+		<type label="MAC Addr (EUI-64)" length="0" sql="MACADDR8" quote="'" />
+	</group>
+
+	<group label="Geometric" color="rgb(225,210,245)">
+		<type label="Point" length="0" sql="POINT" quote="'" />
+		<type label="Line" length="0" sql="LINE" quote="'" />
+		<type label="Line Segment" length="0" sql="LSEG" quote="'" />
+		<type label="Box" length="0" sql="BOX" quote="'" />
+		<type label="Path" length="0" sql="PATH" quote="'" />
+		<type label="Polygon" length="0" sql="POLYGON" quote="'" />
+		<type label="Circle" length="0" sql="CIRCLE" quote="'" />
+		<type label="Geometry" length="1" sql="GEOMETRY" quote="'" note="PostGIS. Optional size, e.g. Point,4326" />
+		<type label="Geography" length="1" sql="GEOGRAPHY" quote="'" note="PostGIS. Optional size, e.g. Point,4326" />
 	</group>
 
 	<group label="Miscellaneous" color="rgb(200,200,255)">
-		<type label="XML" length="1" sql="XML" quote="'" />
+		<type label="UUID" length="0" sql="UUID" quote="'" />
+		<type label="JSON" length="0" sql="JSON" quote="'" />
+		<type label="JSONB" length="0" sql="JSONB" quote="'" />
+		<type label="XML" length="0" sql="XML" quote="'" />
 		<type label="Bit" length="1" sql="BIT" quote="'" />
-		<type label="Bit Varying" length="1" sql="VARBIT" re="BIT VARYING" quote="'" />
-		<type label="Inet Host Addr" length="0" sql="INET" quote="'" />
-		<type label="Inet CIDR Addr" length="0" sql="CIDR" quote="'" />
-		<type label="Geometry" length="0" sql="GEOMETRY" quote="'" />
-        <type label="JSON" length="0" sql="JSON" quote="'" />
-        <type label="JSONB" length="0" sql="JSONB" quote="'" />
+		<type label="Bit Varying" length="1" sql="VARBIT" re="^(VARBIT|BIT VARYING)$" quote="'" />
+		<type label="Text Search Vector" length="0" sql="TSVECTOR" quote="'" />
+		<type label="Text Search Query" length="0" sql="TSQUERY" quote="'" />
 	</group>
 </datatypes>

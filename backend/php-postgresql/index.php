@@ -85,7 +85,9 @@
 			$result2 = pg_query($conn, $qstr);
 			while ($row = pg_fetch_array($result2)) {
 				$name  = $row["column_name"];
-				$type  = $row["data_type"];		// maybe use "udt_name" instead to consider user types
+				$type  = $row["data_type"];
+				// ranges, PostGIS types, etc. are reported as USER-DEFINED; the real name is in udt_name
+				if (strtoupper($type) == "USER-DEFINED") { $type = $row["udt_name"]; }
 				$comment = (isset($row["column_comment"]) ? $row["column_comment"] : "");
 				$null = ($row["is_nullable"] == "YES" ? "1" : "0");
 				$def = $row["column_default"];
